@@ -77,9 +77,22 @@ public class MySQLPersistenceService implements PersistenceService {
 	}
 
 	@Override
-	public <T> T getObjectByFilters(Class<T> clazz, Map<String, Object> mapFilters) throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+	public <T> Object getObjectByFilters(Class<T> clazz, Map<String, Object> mapFilters) throws PersistenceException {
+		try {
+			Criteria criteria = getSession().createCriteria(clazz);
+			if (mapFilters != null) {
+				Set<String> keys = mapFilters.keySet();
+				for (String key : keys) {
+					criteria.add(Restrictions.eq(key, mapFilters.get(key)));
+				}
+			}
+			@SuppressWarnings("unchecked")
+			Object list = criteria.uniqueResult();
+			getSession().flush();
+			return list;
+		} catch (Exception e) {
+			throw new PersistenceException(e);
+		}
 	}
 
 	/**

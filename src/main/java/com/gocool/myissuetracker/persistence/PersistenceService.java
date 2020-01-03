@@ -52,7 +52,7 @@ public interface PersistenceService {
 	 * @param mapFilters
 	 * @return Object
 	 */
-	public <T> T getObjectByFilters(Class<T> clazz, Map<String, Object> mapFilters) throws PersistenceException;
+	public <T> Object getObjectByFilters(Class<T> clazz, Map<String, Object> mapFilters) throws PersistenceException;
 
 	/**
 	 * 

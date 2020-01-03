@@ -26,8 +26,7 @@ import com.gocool.myissuetracker.persistence.MySQLPersistenceService;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"com.gocool.projectx.myissuetracker"})
-@PropertySource(value={"classpath:applocation.properties"})
+@PropertySource(value={"classpath:application.properties"})
 public class HibernateConfiguration {
 
 
